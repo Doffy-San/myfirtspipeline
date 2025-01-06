@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Projet Next.js avec Pipeline CI/CD
 
-## Getting Started
+## Description
+Ceci est une application simple développée avec Next.js pour démontrer une pipeline CI/CD complète en utilisant des outils modernes. L'application affiche une liste des outils utilisés dans la pipeline ainsi que leurs utilités. Le projet est configuré avec des pipelines automatisés pour la construction, les tests, l'analyse de code, et le déploiement.
 
-First, run the development server:
+## Fonctionnalités
+- Application Next.js simple avec une page d'accueil listant les outils CI/CD.
+- Pipeline CI/CD automatisée configurée sur GitLab.
+- Workflow multi-branches pour simuler une collaboration en entreprise.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Outils Utilisés
+Voici les outils intégrés dans le projet :
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### CI/CD
+- **GitLab CI/CD** : Automatisation des étapes de la pipeline, y compris la construction, les tests et le déploiement.
+- **GitHub Actions** : Alternative pour démontrer une autre approche CI/CD.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Développement
+- **Next.js** : Framework React pour développer l'application web.
+- **ESLint** : Outil d'analyse de code pour garantir la qualité du code.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Tests
+- **Jest** : Framework pour les tests unitaires.
 
-## Learn More
+### Documentation
+- **Storybook** : Outil pour documenter et tester les composants UI.
 
-To learn more about Next.js, take a look at the following resources:
+### Performance et Sécurité
+- **Lighthouse CI** : Vérifie les standards de performance et d'accessibilité.
+- **Snyk** : Analyse et sécurise les dépendances.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Conteneurs
+- **Docker** : Assure la cohérence entre les environnements.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Workflow des Branches
+- **`develop`** : Utilisée pour les tests et la validation des modifications.
+- **`main`** : Utilisée pour le code prêt pour la production. La pipeline de `main` dépend du succès de celle de `develop`.
 
-## Deploy on Vercel
+## Étapes de la Pipeline
+1. **Build** : Compile l'application Next.js.
+2. **Test** : Exécute les tests Jest pour garantir la qualité du code.
+3. **Lint** : Analyse le code avec ESLint pour détecter les erreurs.
+4. **Measure** : Évalue la performance avec Lighthouse CI.
+5. **Secure** : Analyse les dépendances avec Snyk.
+6. **Deploy** : Déploie l'application sur Vercel (ou un autre hébergeur).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
