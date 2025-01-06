@@ -92,6 +92,33 @@ a.secondary {
   min-width: 180px;
 }
 
+.toolsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.toolItem {
+  text-align: center;
+  flex: 1 1 calc(25% - 20px);
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.toolUtility {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+}
+
 .footer {
   grid-row-start: 3;
   display: flex;
