@@ -1,0 +1,70 @@
+image: node:18-alpine
+
+stages:
+  - build
+  - test
+  - measure
+  - document
+  - secure
+  - deploy
+
+variables:
+  NODE_ENV: production
+
+cache:
+  paths:
+    - node_modules/
+
+build-job:
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - .next/
+
+jest-job:
+  stage: test
+  script:
+    - npm ci
+    - npm run test
+
+lightouseCI-job:
+  stage: measure
+  script:
+    - npm ci 
+    - npm run build
+    - npx lhci autorun
+  dependencies:
+    - build
+
+storybook-job:
+  stage: document
+    script:
+    - npm ci 
+    - npm run storybook
+    - npx run build-storybook
+    artifacts:
+      paths:
+        - storybook-static/
+
+eslintrules-job: 
+  stage: secure
+  script:
+    - npm install eslint eslint-plugin-security --save-dev
+    - npx eslint . --ext .js,.jsx,.ts,.tsx
+  artifacts:
+    paths:
+      -dependency-check-report.html
+  allow_failure: true
+
+vercel-job:
+  stage: deploy
+  script:
+    - npm ci
+    - npm run build
+    - npx vercel deploy --prod --token $VERCEL_TOKEN
+  environment:
+    -name: production
+    # -url: https://your-vercel-project.vercel.app
